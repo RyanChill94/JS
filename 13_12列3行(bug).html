@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#list li {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #ccc;
+			list-style: none;
+			margin: 5px;
+			background: yellow;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var oUl = document.getElementById('list'),
+				oBtn = document.getElementsByTagName('input')[0],
+				str = '',
+				num = 36;
+
+			for (var i = 1; i <= num; i++) {
+				while (i % 12 == 0) {
+					str += '</br>';
+				}
+				str += '<li></li>'
+			}
+			oBtn.onclick = function() {
+				oUl.innerHTML = str;
+			}
+		}
+
+	</script>
+	<ul id="list"></ul>
+	<input type="button" value="生成">
+</body>
+
+</html>

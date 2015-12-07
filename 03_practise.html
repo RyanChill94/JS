@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>选择样式</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0
+		}
+		
+		#settingBox {
+			width: 300px;
+			height: 200px;
+			background: #ccc;
+			border: 2px solid #000;
+			line-height: 2.5em;
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -150px;
+			margin-top: -100px;
+			display: none;
+		}
+		
+		#settingBox input {
+			display: inline-block;
+			width: 60px;
+			height: 28px;
+		}
+		
+		.option {
+			margin: 10px;
+		}
+		
+		.option span {
+			width: 50px;
+			height: 30px;
+			background: #cce639;
+			border: 1px dashed #fff;
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+		}
+		
+		#box {
+			width: 100px;
+			height: 100px;
+			border: 2px solid #000;
+			margin-left: 50px;
+		}
+		
+		p {
+			background: #ccc;
+			display: inline-block;
+			width: 200px;
+			text-align: center;
+			margin-bottom: 10px
+		}
+
+	</style>
+
+	<script>
+		window.onload = function() {
+			var ashow = document.getElementById('showBox');
+			var oSet = document.getElementById('settingBox');
+			var oBox = document.getElementById('box');
+			var body = document.getElementsByTagName('body')[0];
+			var btn1 = document.getElementById('ok');
+			var btn2 = document.getElementById('reset');
+			ashow.onclick = function() {
+				oSet.style.display = "block";
+				body.style.background = "rgba(0,0,0,0.8)";
+				document.getElementById('bgR').onclick = function() {
+
+					setColor('red');
+
+				};
+				document.getElementById('bgY').onclick = function() {
+
+					setColor('yellow');
+
+				};
+				document.getElementById('bgB').onclick = function() {
+
+					setColor('blue');
+
+				};
+
+				document.getElementById('w100').onclick = function() {
+
+					setWidth('100px');
+
+				}
+				document.getElementById('w200').onclick = function() {
+
+					setWidth('200px');
+
+				}
+				document.getElementById('w300').onclick = function() {
+
+					setWidth('300px');
+
+				}
+
+				document.getElementById('h100').onclick = function() {
+
+					setHeight('100px');
+
+				}
+
+				document.getElementById('h200').onclick = function() {
+
+					setHeight('200px');
+
+				}
+
+				document.getElementById('h300').onclick = function() {
+					setHeight('300px');
+				}
+			}
+			btn1.onclick = function() {
+
+				oSet.style.display = "none";
+				body.style.background = "rgba(255,255,255,1)";
+
+
+			}
+			btn2.onclick = function() {
+				oBox.style.width = '100px';
+				oBox.style.height = '100px';
+				oBox.style.background = 'ffffff';
+
+			}
+
+			/*定义一个设置颜色的函数*/
+
+			function setColor(Color) {
+
+				oBox.style.background = Color;
+
+			}
+
+			/*设置宽度*/
+			function setWidth(Width) {
+
+				oBox.style.width = Width;
+
+			}
+			/*设置高度*/
+			function setHeight(Height) {
+
+				oBox.style.height = Height;
+
+			}
+
+
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<div id="settingBox">
+		<div class="option">
+			选择背景:
+			<span id="bgR">red</span>
+			<span id="bgY">yellow</span>
+			<span id="bgB">blue</span>
+		</div>
+		<div class="option">
+			选择宽度:
+			<span id="w100">100</span>
+			<span id="w200">200</span>
+			<span id="w300">300</span>
+		</div>
+		<div class="option">
+			选择高度:
+			<span id="h100">100</span>
+			<span id="h200">200</span>
+			<span id="h300">300</span>
+		</div>
+		<input type="button" id="ok" value="确定">
+		<input type="button" id="reset" value="重置">
+	</div>
+	<p>设置样式</p>
+	<strong id="showBox">点击设置</strong>
+	<div id="box"></div>
+
+</body>
+
+</html>

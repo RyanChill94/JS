@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box { width:200px; height:200px; background:red; display:none; }
+	p{ display: inline-block;}
+	</style>
+<script>
+window.onload = function (){
+	var oBtn1 = document.getElementById('show');
+	var oBtn2 = document.getElementById('hide');
+	var oDiv = document.getElementById('box');
+	var oStrong = document.getElementById('strong');
+	
+	oStrong.onclick = show;
+	oBtn1.onclick = show;
+	
+	function show(){
+		oDiv.style.display = 'block';
+		oDiv.style.width = '300px';
+		oDiv.style.background = 'yellow';
+	}
+	
+	oBtn2.onclick = function (){
+		oDiv.style.display = 'none';
+	};
+};
+</script>
+</head>
+<body>
+	
+	<input type="button" value="show" id="show">
+	<input type="button" value="hide" id="hide">
+	<p><strong id="strong">show me</strong></p>
+	<div id="box"></div>
+</body>
+</html>

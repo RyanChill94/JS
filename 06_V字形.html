@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 50px;
+			height: 50px;
+			background: red;
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: 30px;
+			text-align: center;
+			line-height: 50px;
+			color: #fff;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var aDiv = document.getElementsByTagName('div');
+			for (var i = 0; i < 12; i++) {
+				document.body.innerHTML += '<div>' + i + '</div>';
+			}
+			for (var i = 0; i < aDiv.length; i++) {
+
+				/**V字形**/
+				if (i <= (aDiv.length / 2)) {
+					aDiv[i].style.left = 10 + i * 50 + 'px';
+					aDiv[i].style.top = 10 + i * 50 + 'px';
+				} else {
+					aDiv[i].style.left = 10 + i * 50 + 'px';
+					aDiv[i].style.top = 10 + (aDiv.length - i) * 50 + 'px';
+				}
+
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>

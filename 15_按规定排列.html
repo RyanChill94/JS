@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			background: #eee4e4;
+		}
+		
+		#wrapper {
+			margin: 0;
+			padding: 0;
+			white-space: nowrap;
+		}
+		
+		#wrapper img {
+			list-style: none;
+			width: 80px;
+			height: 80px;
+			background: green;
+			margin: 10px;
+			border: 10px solid white;
+			border-radius: 80px;
+			transition: all 0.5s;
+		}
+		
+		#wrapper img.selected {
+			border: 10px solid yellow;
+			border-radius: 0px;
+		}
+		
+		#wrapper img.zoom {
+			transform: scale(1.2);
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var oBtn1 = document.getElementById('btn1');
+			var oBtn2 = document.getElementById('btn2');
+			var oBtn3 = document.getElementById('btn3');
+			var oBtn4 = document.getElementById('btn4');
+			var oBtn5 = document.getElementById('btn5');
+			var oBtn6 = document.getElementById('btn6');
+			var oBtn7 = document.getElementById('btn7');
+			var oWrapper = document.getElementById('wrapper');
+			var aImg = document.getElementsByTagName('img');
+			var num = 0,
+				arrImg = ['icon/1.png', 'icon/2.png'],
+				str = '',
+				col = 7;
+
+			oBtn1.onclick = function() {
+				fnClear();
+				num++;
+				var breakline = num % col ? '' : '</br>';
+				oWrapper.innerHTML += "<img src='" + arrImg[num % arrImg.length] + "'>" + breakline;
+
+			}
+			oBtn2.onclick = function() {
+				fnClear();
+				for (var i = 0; i < aImg.length; i += 2) {
+					aImg[i].className = 'selected';
+				}
+			}
+
+			oBtn3.onclick = function() {
+				fnClear();
+				for (var i = 1; i < aImg.length; i += 2) {
+					aImg[i].className = 'selected';
+				}
+			}
+			oBtn4.onclick = function() {
+				fnClear();
+				for (var i = 0; i < aImg.length; i++) {
+					//ceil() 向上取证 round() 四舍五入  floor() 向下取整
+					if (Math.ceil((i + 1) / col) % 2) {
+						//向上取整 奇数行
+						aImg[i].className = 'selected';
+					}
+				}
+			}
+
+			oBtn5.onclick = function() {
+				fnClear();
+				for (var i = 0; i < aImg.length; i++) {
+					if (Math.floor(i / col) % 2) {
+						//向下取整 偶数行   
+						aImg[i].className = 'selected';
+					}
+				}
+
+			}
+
+			oBtn6.onclick = function() {
+				fnClear();
+				for (var i = 0; i < aImg.length; i++) {
+					if (i % col % 2 == 0) {
+						aImg[i].className = 'selected';
+					}
+				}
+			}
+
+			oBtn7.onclick = function() {
+				fnClear();
+				for (var i = 0; i < aImg.length; i++) {
+					if (i % col % 2 == 1) {
+						aImg[i].className = 'selected';
+					}
+				}
+			}
+
+
+			function fnClear() {
+				for (var i = 0; i < aImg.length; i++) {
+					aImg[i].className = '';
+				}
+			}
+
+		}
+
+	</script>
+	<input type="button" value="生成1张图片" id="btn1">
+	<input type="button" value="奇数" id="btn2">
+	<input type="button" value="偶数" id="btn3">
+	<input type="button" value="奇数横排" id="btn4">
+	<input type="button" value="偶数横排" id="btn5">
+	<input type="button" value="奇数竖排" id="btn6">
+	<input type="button" value="偶数竖排" id="btn7">
+	<div id="wrapper">
+
+	</div>
+
+</body>
+
+</html>

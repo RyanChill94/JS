@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>模拟消息发送</title>
+</head>
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	
+	body {
+		position: relative;
+	}
+	
+	#messageBox {
+		width: 400px;
+		height: 600px;
+		border: 2px solid #ccc;
+		box-shadow: 8px 8px 1.5em 3px;
+		background: #c9fff3;
+		position: absolute;
+		left: 50%;
+		margin-left: -200px;
+		top: 50px;
+		text-align: ;
+	}
+	
+	#content {
+		width: 325px;
+		height: 500px;
+		border: 1px solid;
+		background: #fff;
+		position: absolute;
+		left: 40px;
+		top: 30px;
+		overflow: auto;
+	}
+	
+	#contentLeft {
+		text-align: left;
+	}
+	
+	#contentRight {
+		text-align: right;
+	}
+	
+	#type {
+		width: 400px;
+		height: 32px;
+		border: 1px solid #ccc;
+		position: absolute;
+		bottom: 5px;
+		padding: 0px;
+	}
+	
+	#pic {
+		height: 32px;
+		width: 32px;
+	}
+	
+	#send {
+		position: absolute;
+		right: 0px;
+		width: 60px;
+		height: 30px;
+		background: #0040d1;
+		color: aliceblue;
+		font-size: 15px
+	}
+	
+	#typeMes {
+		width: 300px;
+		height: 28px;
+		position: absolute;
+		bottom: 1px;
+		left: 35px
+	}
+
+</style>
+
+<body>
+	<script>
+		window.onload = function() {
+			var oPic = document.getElementById('pic');
+			var oMes = document.getElementById('typeMes');
+			var oBtn = document.getElementById('send');
+			var oCon = document.getElementById('content');
+			var num = 0;
+			var attIcon = ['icon/1.png', 'icon/2.png'];
+
+
+			oPic.onclick = function() {
+				if (num < attIcon.length - 1) {
+					num++;
+				} else {
+					num = 0;
+				}
+				oPic.src = attIcon[num];
+
+			}
+
+			oBtn.onclick = function() {
+				//		  if(num == 1)//二号用户从右边输出
+
+				if (oMes.value) {
+					if (num == 1) {
+						oCon.className += 'contentRight';
+					} else {
+						oCon.className += 'contentLeft';
+					}
+					oCon.innerHTML += '<img src=' + attIcon[num] + '>' + oMes.value + '<br/>';
+					oMes.value = '';
+				}
+			}
+
+
+
+		}
+
+	</script>
+	<div id="messageBox">
+		<div id="content"></div>
+		<div id="type">
+			<img src="icon/1.png" alt="" id="pic">
+			<input type="text" id="typeMes">
+			<input type="button" id="send" value="发送">
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul {
+			padding: 0;
+			margin: 0;
+			margin-top: 0;
+			list-style: none;
+		}
+		
+		ul li {
+			border: 1px solid #333;
+			height: 50px;
+			width: 50px;
+			display: inline-block;
+			line-height: 50px;
+			text-align: center;
+			font-size: 28px;
+			font-weight: bold;
+			margin: 10px;
+			margin: 5px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var olist = document.getElementById('list'),
+				oBtn = document.getElementById('btn'),
+				str = '',
+				listItem = document.getElementsByTagName('li'),
+				aColor = ['red', 'pink', 'grey', 'yellow'];
+
+			oBtn.onclick = function() {
+				for (var i = 0; i < 100; i++) {
+					str += "<li style ='background:" + aColor[i % 4] + "'>" + i + "</li>";
+					if (!((1 + i) % 10)) {
+						str += "</br>"
+					}
+				}
+				olist.innerHTML = str;
+			}
+		}
+
+	</script>
+	<input type="button" value="自动生成100LI" id="btn">
+	<ul id="list"></ul>
+</body>
+
+</html>

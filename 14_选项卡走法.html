@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body {
+			background: #ccc;
+		}
+		
+		p {
+			text-align: center;
+		}
+		
+		input {
+			width: 100px;
+			height: 50px;
+			font-size: 16px;
+			color: aqua;
+			background: #414e5c;
+			box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.3)
+		}
+		
+		p .active {
+			border: 2px solid #000;
+			color: red;
+		}
+		
+		#wrap {
+			width: 345px;
+			margin: 80px auto;
+			border: 1px solid #fff;
+			overflow: hidden;
+			border-bottom: none;
+			border-right: 1px solid #999;
+			box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.3);
+		}
+		
+		#wrap ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			float: left;
+			width: 50px;
+		}
+		
+		#wrap li {
+			height: 70px;
+			color: aqua;
+			background: #414e5c;
+			border: 1px solid #999;
+			text-align: center;
+			vertical-align: bottom;
+			cursor: pointer;
+			font: 20px/59px 'arial';
+		}
+		
+		#wrap .active {
+			color: red;
+		}
+		
+		img {
+			float: left;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var oBtn = document.getElementsByTagName('input'),
+				oImg = document.getElementsByTagName('img')[0],
+				ali = document.getElementsByTagName('li'),
+				arrImg = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg'],
+				onOff = true,
+				halfLen = ali.length / 2;
+			var iNow = 0;
+			oBtn[0].onclick = function() {
+
+				iNow < ali.length - 1 ? iNow++ : iNow = 0;
+				onOff ? cross() : synch();
+
+			}
+
+			//交叉按钮
+			oBtn[1].onclick = function() {
+				this.class = 'active';
+				oBtn[2].class = '';
+				onOff = true;
+				cross();
+			}
+
+			//同步按钮
+			oBtn[2].onclick = function() {
+				this.className = 'active';
+				oBtn[2].className = '';
+				onOff = false;
+				synch();
+			}
+
+			for (var i = 0; i < ali.length; i++) {
+				ali[i].index = i;
+				ali[i].onclick = function() {
+					iNow = this.index;
+					if (onOff) {
+						cross();
+					} else {
+						synch();
+					}
+				}
+			}
+
+			function synch() {
+				clearClass();
+				if (iNow < halfLen) {
+					ali[iNow].className = 'active';
+					ali[iNow + halfLen].className = 'active';
+				} else {
+					ali[iNow].className = 'active';
+					ali[iNow - halfLen].className = 'active';
+				}
+
+				oImg.src = arrImg[iNow % halfLen];
+			}
+
+			function cross() {
+				clearClass();
+				ali[iNow].className = 'active';
+				ali[ali.length - 1 - iNow].className = 'active';
+				oImg.src = arrImg[iNow % halfLen];
+			}
+
+			function clearClass() {
+				for (var i = 0; i < ali.length; i++) {
+					ali[i].className = '';
+				}
+
+			}
+
+		}
+
+	</script>
+	<p>
+		<input type="button" value="next">
+		<input type="button" value="cross">
+		<input type="button" value="same">
+	</p>
+	<div id="wrap">
+		<ul>
+			<li class='active'>0</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<img src="img/2.jpg" alt="">
+		<ul>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+		</ul>
+	</div>
+</body>
+
+</html>

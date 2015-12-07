@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>自动生成V字形</title>
+	<style type="text/css">
+		#list {
+			position: relative;
+		}
+		
+		li {
+			width: 50px;
+			height: 50px;
+			color: white;
+			background: #eb0707;
+			line-height: 50px;
+			font-weight: bold;
+			position: absolute;
+			text-align: center;
+			font-size: 28px;
+			display: inline-block;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+
+			var oBtn = document.getElementsByTagName('input')[0],
+				olist = document.getElementById('list'),
+				str = '',
+				length = 5,
+				top, left, flag = 0;
+			oBtn.onclick = function() {
+				if (flag == 0) { //上箭头
+					str = '';
+					for (var i = 0; i < length; i++) {
+						left = i * 50 + 'px';
+						if (i < length / 2) {
+							top = ((length - 1) / 2 - i) * 50 + 'px';
+						} else {
+							top = (i - (length - 1) / 2) * 50 + 'px';
+						}
+						str += '<li style="top:' + top + '; left:' + left + '">' + i + '</li>'
+					}
+					flag++;
+				} else if (flag == 1) { //右箭头
+					str = '';
+					for (var i = 0; i < length; i++) {
+						top = i * 50 + 'px';
+						if (i < length / 2) {
+							left = i * 50 + 'px';
+						} else {
+							left = (length - i - 1) * 50 + 'px';
+						}
+						str += '<li style="top:' + top + ';left:' + left + '">' + i + "</li>";
+					}
+					flag++;
+
+				} else if (flag == 2) { //下箭头
+					str = '';
+					for (var i = 0; i < length; i++) {
+						left = i * 50 + 'px';
+						if (i < length / 2) {
+							top = i * 50 + 'px';
+						} else {
+							top = (length - i - 1) * 50 + 'px';
+						}
+						str += '<li style = "top:' + top + ';left:' + left + '">' + i + '</li>';
+					}
+					flag++;
+				} else { //左箭头
+					str = '';
+					for (var i = 0; i < length; i++) {
+						top = i * 50 + 'px';
+						if (i < length / 2) {
+							left = ((length - 1) / 2 - i) * 50 + 'px';
+						} else {
+							left = (i - (length - 1) / 2) * 50 + 'px';
+						}
+						str += '<li style="top:' + top + ';left:' + left + '">' + i + '</li>'
+					}
+					flag = 0;
+
+				}
+				olist.innerHTML = str;
+			}
+
+		}
+
+	</script>
+	<input type="button" value="click">
+	<ul id="list"></ul>
+</body>
+
+</html>

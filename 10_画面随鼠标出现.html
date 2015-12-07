@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#pic {
+			height: 360px;
+			width: 300px;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		#cover {
+			position: absolute;
+			height: 360px;
+			height: 600px;
+			top: 0;
+			left: 0;
+			background: transparent;
+			font-size: 0;
+		}
+		
+		#cover div {
+			display: inline-block;
+			height: 50px;
+			width: 50px;
+			border: 1px solid #eee;
+			background: #eee;
+			/*用小块遮住 onmouseover的时候颜色变为transparent*/
+			margin: 0
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var oCover = document.getElementById('cover'),
+				str = '',
+				sBlock = oCover.getElementsByTagName('div');
+			for (var i = 0; i < 300; i++) {
+
+				str += "<div></div>";
+			}
+			oCover.innerHTML = str;
+			for (var i = 0; i < 300; i++) {
+				sBlock[i].onmouseover = function() {
+					this.style.background = 'transparent'
+
+				}
+				sBlock[i].onmouseout = function() {
+					this.style.opacity = 0;
+					this.style.transform = 'scale(1)';
+				}
+			}
+		}
+
+	</script>
+	<div id="pic">
+		<img src="img/2.jpg" alt="a pic">
+		<section id="cover"></section>
+	</div>
+</body>
+
+</html>

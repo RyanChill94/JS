@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>好友列表</title>
+	<style>
+		ul,
+		h2 {
+			padding: 0;
+			margin: 0;
+		}
+		
+		li {
+			list-style: none;
+		}
+		
+		#list h2,
+		.lis li {
+			font-size: 18px;
+			padding: 3px;
+			margin-left: 0px;
+		}
+		
+		#list {
+			width: 300px;
+			margin: 0 auto;
+			border: 1px solid #ccc;
+			background: #ded;
+		}
+		
+		.lis li {
+			border-bottom: 1px solid #d6d65d;
+			text-indent: 15px;
+			cursor: pointer;
+		}
+		
+		.lis ul {
+			display: none;
+		}
+		
+		.lis h2 {
+			background: url() no-repeat 5px center;
+			text-indent: 15px;
+			background-color: #4d4a4a;
+			cursor: pointer;
+			color: aliceblue;
+		}
+		
+		#list h2.active {
+			background: url() no-repeat 5px center #ffa33c;
+		}
+		
+		#list .selected {
+			background: #eee;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		//		window.onload = function() {
+		//			var ahead = document.getElementsByTagName('h2'),
+		//				aul = ahead[].getElementsByTagName('ul');
+		//
+		//			for (var i = 0; i < ahead.length; i++) {
+		//				ahead[i].index = i;
+		//				ahead[i].onclick = function() {
+		//					clrClass();
+		//					show();
+		//				}
+		//			}
+		//
+		//			function clrClass() {
+		//				for (var i = 0; i < ahead.length; i++) {
+		//					aul[]
+		//				}
+		//			}
+		//
+		//		}
+
+		window.onload = function() {
+			var oUl = document.getElementById('list'),
+				ah2 = oUl.getElementsByTagName('h2'),
+				aUl = oUl.getElementsByTagName('ul'),
+				aLi, arrLi = [],
+				prevLiIndex = 0;
+
+
+			for (var i = 0; i < ah2.length; i++) {
+				ah2[i].index = i;
+				ah2[i].isOpen = null;
+				ah2[i].onclick = function() {
+					clr();
+					if (this.isOpen) {
+						ah2[this.index].className = '';
+						aUl[this.index].style.display = 'none';
+						this.isOpen = false;
+					} else {
+
+						ah2[this.index].className = 'active';
+						aUl[this.index].style.display = 'block';
+						this.isOpen = true;
+					}
+				}
+			}
+
+			for (var i = 0; i < aUl.length; i++) {
+				ali = aUl[i].getElementsByTagName('li');
+				for (var j = 0; j < ali.length; j++) {
+					arrLi.push(ali[j]);
+				}
+			}
+
+			for (i = 0; i < arrLi.length; i++) {
+				arrLi[i].index = i;
+				arrLi[i].onclick = function() {
+					if (arrLi[prevLiIndex] != this) {
+						arrLi[prevLiIndex].className = 'none';
+					}
+					arrLi[this.index].className = (arrLi[this.index].className == '' ? 'selected' : '');
+					prevLiIndex = this.index;
+				}
+			}
+
+
+
+			function clr() {
+				for (var i = 0; i < ah2.length; i++) {
+					ah2[i].className = '';
+				}
+			}
+		}
+
+	</script>
+	<ul id="list">
+		<li class="lis">
+			<h2>我的好友</h2>
+			<ul>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>我的同学</h2>
+			<ul>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>黑名单</h2>
+			<ul>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+				<li>111</li>
+			</ul>
+		</li>
+
+	</ul>
+</body>
+
+</html>

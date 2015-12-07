@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#left {
+			width: 500px;
+			height: 450px;
+			background: rgba(89, 196, 192, 0.6);
+			float: left;
+			text-align: center;
+		}
+		
+		#left img {
+			width: 480px;
+			height: 380px;
+			margin: 10px;
+			cursor: pointer;
+		}
+		
+		#right {
+			width: 300px;
+			height: 450px;
+			background: rgba(0, 128, 54, 0.46);
+			float: left;
+			text-align: center;
+		}
+		
+		#right img {
+			width: 280px;
+			height: 380px;
+			margin: 10px;
+			cursor: pointer;
+		}
+		
+		#left h2,
+		#right h2 {
+			font-size: 18px;
+			margin: 0;
+			padding: 0;
+		}
+		
+		#left p,
+		#right p {
+			text-align: left;
+			margin: 0;
+			padding: 0;
+			padding-left: 10px;
+		}
+		
+		input[type='button'] {
+			width: 100px;
+			margin: 10px auto;
+			background: #674a4a;
+			font-size: 15px;
+			color: aliceblue;
+		}
+
+	</style>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+			var oPrev = document.getElementById('prev'),
+				oNext = document.getElementById('next'),
+				aImg = document.getElementsByTagName('img'),
+				ah2 = document.getElementsByTagName('h2'),
+				aP = document.getElementsByTagName('p'),
+				arrLeft = ['sneaker/1.jpg', 'sneaker/2.jpg', 'sneaker/3.jpg', 'sneaker/4.jpg'],
+				arrRight = ['douniu/1.jpg', 'douniu/2.jpg', 'douniu/3.jpg', 'douniu/4.jpg', ],
+				leftNum = 0,
+				rightNum = 0;
+
+			function init() {
+				aImg[0].src = arrLeft[leftNum];
+				aImg[1].src = arrRight[rightNum];
+				changeBottom(leftNum, rightNum);
+
+			}
+
+			init();
+
+			oPrev.onclick = function() {
+
+				leftNum == 0 ? leftNum = arrLeft.length - 1 : --leftNum;
+				rightNum == 0 ? rightNum = arrRight.length - 1 : --rightNum;
+				aImg[0].src = arrLeft[leftNum];
+				aImg[1].src = arrRight[rightNum];
+				changeBottom(leftNum, rightNum);
+			}
+
+			oNext.onclick = function() {
+
+				leftNum == arrLeft.length - 1 ? leftNum = 0 : ++leftNum;
+				rightNum == arrRight.length - 1 ? rightNum = 0 : ++rightNum;
+				aImg[0].src = arrLeft[leftNum];
+				aImg[1].src = arrRight[rightNum];
+				changeBottom(leftNum, rightNum);
+			}
+
+			aImg[0].onclick = function() {
+				leftNum == arrLeft.length - 1 ? leftNum = 0 : leftNum++;
+				aImg[0].src = arrLeft[leftNum];
+				changeBottom(leftNum, rightNum);
+			}
+
+			aImg[1].onclick = function() {
+				rightNum == arrRight.length - 1 ? rightNum = 0 : rightNum++;
+				aImg[1].src = arrRight[rightNum];
+				changeBottom(leftNum, rightNum);
+			}
+
+			function changeBottom(leftNum, rightNum) {
+				for (var i = 0; i < ah2.length; i++) {
+					ah2[i].innerHTML = '';
+				}
+				for (var i = 0; i < aP.length; i++) {
+					aP[i].innerHTML = '';
+				}
+				ah2[0].innerHTML = '第一组<span>' + (leftNum + 1) + '</span>张';
+				ah2[1].innerHTML = '第二组<span>' + (rightNum + 1) + '</span>张';
+				aP[0].innerHTML = '<span>' + (leftNum + 1) + '</span>/<span>' + arrLeft.length + '</span>';
+				aP[1].innerHTML = '<span>' + (rightNum + 1) + '</span>/<span>' + arrRight.length + '</span>';
+			}
+		}
+
+	</script>
+	<input type="button" value="上一组" id="prev">
+	<input type="button" value="下一组" id="next">
+	<div id="container" class="clear">
+		<div id="left">
+			<img src="">
+			<h2></h2>
+			<p></p>
+		</div>
+		<div id="right">
+			<img src="">
+			<h2></h2>
+			<p></p>
+		</div>
+	</div>
+</body>
+
+</html>
