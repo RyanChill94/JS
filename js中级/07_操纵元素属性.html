@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		window.onload = function() {
+
+			//			var oText = document.getElementsByTagName('input')[0];
+			//
+			//			oText.value = '333';
+			//			alert(oText['value']);
+			//
+			//
+			//			var name = 'value';
+			//			alert(oText._name_); // . 和 [] 无法获取自定义属性
+			//			alert(oText.getAttribute('_name_')); //通过getAttribute可以获取
+
+			//			元素.getAttribute(属性名称)方法 获取指定元素的指定属性的值
+			//			
+			//			
+			//			
+			//			元素.removeAttribute(属性名称); 方法 移除指定的元素的指定的属性
+			//			//oText.removeAttribute( 'value' );
+
+
+
+			var oImg = document.getElementById('img1');
+			/*
+				2.可以获取元素属性实际的值
+					ie7下还是会返回资源的绝对路径
+			*/
+			alert(oImg.src);
+			alert(oImg['src']);
+
+			alert(oImg.getAttribute('src'));
+
+			alert(oImg.style.getAttribute('width')); //错误 无法获取
+		}
+
+	</script>
+	<input type="text" id="text1" value="1111" _name_="霓虹" />
+	<img src="../douniu/1.jpg" id="img1" style="width:100px;" />
+	<!--./当前目录之下的目录
+	../上一级目录-->
+
+
+</body>
+
+</html>

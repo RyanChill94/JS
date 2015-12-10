@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function() {
+			var oText = document.getElementById('text1'),
+				oBtn = document.getElementById('btn'),
+				oUl = document.getElementById('ul1');
+			oBtn.onclick = function() {
+				var oLi = document.createElement('li');
+				oLi.innerHTML = oText.value;
+
+				var oA = document.createElement('a');
+				oA.innerHTML = '删除';
+				oA.href = 'javascipt:;';
+				oA.onclick = function() {
+
+					oUl.removeChild(this.parentNode);
+
+				}
+				oLi.appendChild(oA);
+
+				/*
+			父级.insertBefore(新的元素，被插入的元素) 方法 在指定元素前面插入一个新元素
+			在ie下如果第二个参数的节点不存在，会报错
+			在其他标准浏览器下如果第二个参数的节点不存在，则会以appendChild的形式进行添加
+				*/
+				if (oUl.children[0]) {
+					oUl.insertBefore(oLi, oUl.children[0]);
+				} else {
+					oUl.appendChild(oLi);
+				}
+
+			}
+
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<input type="text" id="text1" />
+	<input type="button" value="留言" id="btn" />
+	<ul id="ul1"></ul>
+</body>
+
+</html>
